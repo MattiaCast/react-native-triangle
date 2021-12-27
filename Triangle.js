@@ -9,14 +9,13 @@ var createReactClass = require('create-react-class');
 var PropTypes = require('prop-types')
 
  var Triangle = createReactClass({
-   
-   displayName: 'Triangle',
 
    propTypes: {
      direction: PropTypes.oneOf(['up', 'right', 'down', 'left', 'up-right', 'up-left', 'down-right', 'down-left']),
      width: PropTypes.number,
      height: PropTypes.number,
      color: PropTypes.string,
+     colorBorder: PropTypes.string //HACK afancinelli
    },
 
    getDefaultProps: function() {
@@ -36,9 +35,9 @@ var PropTypes = require('prop-types')
          borderBottomWidth: this.props.height,
          borderLeftWidth: this.props.width/2.0,
          borderTopColor: 'transparent',
-         borderRightColor: 'transparent',
+         borderRightColor: this.props.colorBorder ? this.props.colorBorder : 'transparent',
          borderBottomColor: this.props.color,
-         borderLeftColor: 'transparent',
+         borderLeftColor: this.props.colorBorder ? this.props.colorBorder : 'transparent',
        };
      } else if (this.props.direction == 'right') {
        return {
@@ -46,9 +45,9 @@ var PropTypes = require('prop-types')
          borderRightWidth: 0,
          borderBottomWidth: this.props.height/2.0,
          borderLeftWidth: this.props.width,
-         borderTopColor: 'transparent',
+         borderTopColor: this.props.colorBorder ? this.props.colorBorder : 'transparent',
          borderRightColor: 'transparent',
-         borderBottomColor: 'transparent',
+         borderBottomColor: this.props.colorBorder ? this.props.colorBorder : 'transparent',
          borderLeftColor: this.props.color,
        };
      } else if (this.props.direction == 'down') {
@@ -58,9 +57,9 @@ var PropTypes = require('prop-types')
          borderBottomWidth: 0,
          borderLeftWidth: this.props.width/2.0,
          borderTopColor: this.props.color,
-         borderRightColor: 'transparent',
+         borderRightColor: this.props.colorBorder ? this.props.colorBorder : 'transparent',
          borderBottomColor: 'transparent',
-         borderLeftColor: 'transparent',
+         borderLeftColor: this.props.colorBorder ? this.props.colorBorder : 'transparent',
        };
      } else if (this.props.direction == 'left') {
        return {
@@ -68,9 +67,9 @@ var PropTypes = require('prop-types')
          borderRightWidth: this.props.width,
          borderBottomWidth: this.props.height/2.0,
          borderLeftWidth: 0,
-         borderTopColor: 'transparent',
+         borderTopColor: this.props.colorBorder ? this.props.colorBorder : 'transparent',
          borderRightColor: this.props.color,
-         borderBottomColor: 'transparent',
+         borderBottomColor: this.props.colorBorder ? this.props.colorBorder : 'transparent',
          borderLeftColor: 'transparent',
        };
      } else if (this.props.direction == 'up-left') {
